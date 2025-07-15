@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7FF867AA-BA5A-4C90-A251-DA56167D24F6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>_3tr</RootNamespace>
+    <AssemblyName>3tr</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Users\FrmAddEitUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\FrmAddEitUser.Designer.cs">
+      <DependentUpon>FrmAddEitUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListDrivers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListDrivers.Designer.cs">
+      <DependentUpon>frmListDrivers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Peoples\frmPeople.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Peoples\frmPeople.Designer.cs">
+      <DependentUpon>frmPeople.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuthPage\FrmRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthPage\FrmRegister.Designer.cs">
+      <DependentUpon>FrmRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmtest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmtest.Designer.cs">
+      <DependentUpon>frmtest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Frmusers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\Frmusers.Designer.cs">
+      <DependentUpon>Frmusers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainApp\MainApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainApp\MainApp.Designer.cs">
+      <DependentUpon>MainApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuthPage\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthPage\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Peoples\FrmPersonInfoAsk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Peoples\FrmPersonInfoAsk.Designer.cs">
+      <DependentUpon>FrmPersonInfoAsk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AuthPage\Login.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AuthPage\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuthPage\Register.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AuthPage\Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Users\FrmAddEitUser.resx">
+      <DependentUpon>FrmAddEitUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListDrivers.resx">
+      <DependentUpon>frmListDrivers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Peoples\frmPeople.resx">
+      <DependentUpon>frmPeople.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthPage\FrmRegister.resx">
+      <DependentUpon>FrmRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmtest.resx">
+      <DependentUpon>frmtest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\Frmusers.resx">
+      <DependentUpon>Frmusers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainApp\MainApp.resx">
+      <DependentUpon>MainApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthPage\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthPage\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Peoples\FrmPersonInfoAsk.resx">
+      <DependentUpon>FrmPersonInfoAsk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="AuthPage\Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include=".editorconfig" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ContactsBusinessLayer\ContactsBusinessLayer.csproj">
+      <Project>{936ef888-df9c-4265-80ad-5f015c49a748}</Project>
+      <Name>ContactsBusinessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\office-man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-background7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-person-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-password-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\istockphoto-1452069296-612x612.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-application-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-user-groups-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-users-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-testing-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\team.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-driver-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-admin-settings-male-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\ask.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-find-user-male-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\add-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\office-man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-admin-settings-male-96 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\management %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\management %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resume.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\driver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-rejected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\driver-license.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-driver-license-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-driver-license-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\management %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\priority.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\black-low-poly-geometric-background-vector.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-remove-user-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-show-password-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-car-insurance-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-home-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-world-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hand %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hand %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-email-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-phone-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-id-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-id-48 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-birth-date-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-passport-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-address-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-phone-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-email-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-single-page-mode-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-single-page-mode-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-email-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-worker-id-card-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-check-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-test-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\driver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app materya\pics\icons8-remove-user-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-denied-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-denied-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Applications\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
