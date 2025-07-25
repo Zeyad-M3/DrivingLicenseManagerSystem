@@ -8,6 +8,8 @@ namespace ContactsBusinessLayer
     {
         public int TestTypeID { get; set; }
         public string TestTypeName { get; set; }
+        public string TestDescription { get; set; }
+        public decimal TestFees { get; set; }
 
         public static List<clsTestTypeBusiness> GetAllTestTypes()
         {
@@ -19,11 +21,43 @@ namespace ContactsBusinessLayer
                 businessList.Add(new clsTestTypeBusiness
                 {
                     TestTypeID = data.TestTypeID,
-                    TestTypeName = data.TestTypeName
+                    TestTypeName = data.TestTypeName,
+                    TestDescription = data.TestDescription,
+                    TestFees = data.TestFees
                 });
             }
 
             return businessList;
+        }
+
+        public static clsTestTypeBusiness GetTestTypeById(int testTypeId)
+        {
+            clsTestType data = clsTestTypeData.GetTestTypeById(testTypeId);
+            if (data != null)
+            {
+                return new clsTestTypeBusiness
+                {
+                    TestTypeID = data.TestTypeID,
+                    TestTypeName = data.TestTypeName,
+                    TestDescription = data.TestDescription,
+                    TestFees = data.TestFees
+                };
+            }
+            return null;
+        }
+
+        // Update test type
+        public static bool UpdateTestType(clsTestTypeBusiness testType)
+        {
+            clsTestType data = new clsTestType
+            {
+                TestTypeID = testType.TestTypeID,
+                TestTypeName = testType.TestTypeName,
+                TestDescription = testType.TestDescription,
+                TestFees = testType.TestFees
+            };
+
+            return clsTestTypeData.UpdateTestType(data);
         }
 
         public bool AddTestType()

@@ -1,135 +1,158 @@
-﻿using System;
-using System.Data;
+﻿
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Runtime.Remoting.Messaging;
 using ContactsDataAccessLayer;
 
 namespace ContactsBusinessLayer
 {
     public class clsApplication
     {
-        // Properties
         public int Id { get; set; }
         public int PersonID { get; set; }
-        public string ApplicationDate { get; set; }
-
-        public string ApplicationType { get; set; }
+        public DateTime ApplicationDate { get; set; }
+        public int ApplicationType { get; set; }
         public string Status { get; set; }
-        public string ApplicationFee { get; set; }
-        public string PaymentDate { get; set; }
-        public string LicenseClassID { get; set; }
-        // Constructor
-        public clsApplication()
+        public decimal ApplicationFee { get; set; }
+        public DateTime PaymentDate { get; set; }
+        public int LicenseClassID { get; set; }
+        public int? Score { get; set; } // إضافة Score كقابل للـ null
+
+        // Business Methods:
+
+        public static List<clsApplication> GetAllApplications()
         {
-            Id = 0;
-            PersonID = 0;
-            ApplicationDate = string.Empty;
-            ApplicationType = string.Empty;
-            Status = string.Empty;
-            ApplicationFee = string.Empty;
-            PaymentDate = string.Empty;
-            LicenseClassID = string.Empty;
-        }
-        // Constructor with parameters
-        public clsApplication(int id, int personID, string applicationDate, string applicationType, string status,
-            string applicationFee, string paymentDate, string licenseClassID)
-        {
-            this.Id = id;
-            this.PersonID = personID;
-            this.ApplicationDate = applicationDate;
-            this.ApplicationType = applicationType;
-            this.Status = status;
-            this.ApplicationFee = applicationFee;
-            this.PaymentDate = paymentDate;
-            this.LicenseClassID = licenseClassID;
-        }
-
-
-        // Method to get application by ID
-        public bool GetApplicationByID(int id)
-        {
-            int personID = 0;
-            string applicationDate = string.Empty;
-            string applicationType = string.Empty;
-            string status = string.Empty;
-            string applicationFee = string.Empty;
-            string paymentDate = string.Empty;
-            string licenseClassID = string.Empty;
-
-            bool isFound = clsApplicationDataAccess.GetApplicationByID(id, ref personID, ref applicationDate, ref applicationType,
-                ref status, ref applicationFee, ref paymentDate, ref licenseClassID);
-
-            if (isFound)
+            List<clsApplication> applications = new List<clsApplication>();
+            var dataList = clsApplicationData.GetAllApplicationData();
+            foreach (var item in dataList)
             {
-                this.Id = id;
-                this.PersonID = personID;
-                this.ApplicationDate = applicationDate;
-                this.ApplicationType = applicationType;
-                this.Status = status;
-                this.ApplicationFee = applicationFee;
-                this.PaymentDate = paymentDate;
-                this.LicenseClassID = licenseClassID;
+                applications.Add(MapToBusiness(item));
             }
-
-            return isFound;
+            return applications;
         }
 
-
-        public static DataTable GetAllApplications()
+        public static clsApplication GetApplicationById(int id)
         {
-            return clsApplicationDataAccess.GetAllApplications();
-
+            var dataApplication = clsApplicationData.GetApplicationById(id);
+            return dataApplication != null ? MapToBusiness(dataApplication) : null;
         }
-        //test connection
-        public bool testconnection()
+
+        public static List<clsApplication> GetApplicationsByPersonID(int personId)
         {
-            if (clsApplicationDataAccess.TestConnection())
+            List<clsApplication> applications = new List<clsApplication>();
+            var dataList = clsApplicationData.GetApplicationByPersonID(personId);
+            foreach (var item in dataList)
+            {
+                applications.Add(MapToBusiness(item));
+            }
+            return applications;
+        }
+        // gitPersonIDbyApplication
+
+
+        public bool Save()
+        {
+            try
+            {
+                // Map this business-layer object to a data-layer object before passing to data layer
+                ContactsDataAccessLayer.clsApplication data = MapToDataLayer(this);
+                if (clsApplicationData.GetApplicationById(this.Id) == null)
+                {
+                    int newId = clsApplicationData.AddApplication(data); // احصل على Id الجديد
+                    if (newId > 0)
+                    {
+                        this.Id = newId; // تحديث Id في الكائن
+                        return true;
+                    }
+                    return false;
+                }
+                else
+                {
+                    return clsApplicationData.UpdateApplication(data); // تحديث موجود
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error saving application: " + ex.Message);
                 return false;
-            else
-                return true;
+            }
         }
 
-        //count applications
-        public static int CountApplications()
+        public static bool UpdateApplication(clsApplication application)
         {
-            return clsApplicationDataAccess.CountApplications();
+            try
+            {
+                return application.Save();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error updating application: " + ex.Message);
+                return false;
+            }
         }
 
-        // Method to add a new application
-        public void AddApplication(int personID, string applicationDate, string applicationType, string status,
-            string applicationFee, string paymentDate, string licenseClassID)
+        public static bool Delete(int id)
         {
-            clsApplicationDataAccess.AddAnewApplication(personID, applicationDate, applicationType, status,
-               applicationFee, paymentDate, licenseClassID);
+            try
+            {
+                return clsApplicationData.DeleteApplication(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error deleting application: " + ex.Message);
+                return false;
+            }
         }
 
-        // Method to update an existing application
-        public void UpdateApplication(int id, int personID, string applicationDate, string applicationType, string status,
-            string applicationFee, string paymentDate, string licenseClassID)
+        public static bool AddApplication(clsApplication application)
         {
-            clsApplicationDataAccess.UpdateApplication(id, personID, applicationDate, applicationType, status,
-                applicationFee, paymentDate, licenseClassID);
+            try
+            {
+                return application.Save();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error adding application: " + ex.Message);
+                return false;
+            }
         }
 
-        // Method to delete an application
-        public void DeleteApplication(int id)
+        // Fix MapToBusiness and MapToDataLayer to convert between DateTime and string
+
+        private static clsApplication MapToBusiness(ContactsDataAccessLayer.clsApplication data)
         {
-            clsApplicationDataAccess.DeleteApplication(id);
+            if (data == null) return null;
+            return new clsApplication
+            {
+                Id = data.Id,
+                PersonID = data.PersonID,
+                ApplicationDate = data.ApplicationDate,
+                ApplicationType = data.ApplicationType,
+                Status = data.Status ?? string.Empty,
+                ApplicationFee = data.ApplicationFee,
+                PaymentDate = data.PaymentDate,
+                LicenseClassID = data.LicenseClassID,
+                Score = data.Score,
+            };
         }
-        // Method to search applications by person ID
-        public static bool SearchApplicationsByPersonID(int personID, string applicationDate, string applicationType, string status,
-            string applicationFee, string paymentDate, string licenseClassID)
+
+        // Fix MapToDataLayer to assign DateTime properties directly, not as strings
+        private static ContactsDataAccessLayer.clsApplication MapToDataLayer(clsApplication business)
         {
-
-            return clsApplicationDataAccess.GetApplicationByPersonID(personID);
+            if (business == null) return null;
+            return new ContactsDataAccessLayer.clsApplication
+            {
+                Id = business.Id,
+                PersonID = business.PersonID,
+                ApplicationDate = business.ApplicationDate,
+                ApplicationType = business.ApplicationType,
+                Status = business.Status ?? string.Empty,
+                ApplicationFee = business.ApplicationFee,
+                PaymentDate = business.PaymentDate,
+                LicenseClassID = business.LicenseClassID
+            };
         }
-
-        // Method to search applications by application type
-        public static bool SearchApplicationsByApplicationType(string applicationType)
-        {
-            return clsApplicationDataAccess.GetApplicationTypebyName(applicationType);
-        }
-
-
-
-
     }
 }

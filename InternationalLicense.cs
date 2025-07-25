@@ -57,6 +57,22 @@ namespace ContactsBusinessLayer
             }
             return resultList;
         }
+        // add New International License
+        public static bool AddNewInternationalLicense(clsInternationalLicense license)
+        {
+            if (license == null) return false;
+            var dataObj = license.ToDataObject();
+            return clsInternationalLicensesData.AddInternationalLicense(dataObj);
+        
+        
+        }
+
+        // check if International License exists by LicenseID
+
+        public static bool ExistsByLicenseID(int licenseID)
+        {
+            return clsInternationalLicensesData.IsInternationalLicenseAvailableByLicenseID(licenseID);
+        }
 
         public static clsInternationalLicense FindByID(int id)
         {

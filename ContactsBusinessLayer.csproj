@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="ApplicationType.cs" />
     <Compile Include="Appointment.cs" />
+    <Compile Include="Driver.cs" />
     <Compile Include="InternationalLicense.cs" />
     <Compile Include="License.cs" />
     <Compile Include="LicenseClass.cs" />

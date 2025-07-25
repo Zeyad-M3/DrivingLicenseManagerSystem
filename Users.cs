@@ -87,6 +87,14 @@ namespace ContactsBusinessLayer
             }
         }
 
+        // Fix for CS0026: Replace 'this' with 'clsUsers' parameter in static Update method
+        public static bool Update(clsUsers clsUsers)
+        {
+            var dataUser = MapBusinessToData(clsUsers);
+            return clsUsersData.UpdateUserData(dataUser);
+        }
+
+
         public bool Delete(int userid)
         {
             return clsUsersData.DeleteUserData(this.UserId);
