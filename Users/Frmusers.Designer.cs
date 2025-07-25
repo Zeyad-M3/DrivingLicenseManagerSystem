@@ -32,17 +32,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.addNewUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.test = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.phoneCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -78,6 +78,7 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewUserToolStripMenuItem,
             this.test,
@@ -86,8 +87,56 @@
             this.toolStripMenuItem4,
             this.phoneCallToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 160);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // addNewUserToolStripMenuItem
+            // 
+            this.addNewUserToolStripMenuItem.Image = global::_3tr.Properties.Resources.add_user;
+            this.addNewUserToolStripMenuItem.Name = "addNewUserToolStripMenuItem";
+            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.addNewUserToolStripMenuItem.Text = "Add New User";
+            this.addNewUserToolStripMenuItem.Click += new System.EventHandler(this.addNewUserToolStripMenuItem_Click);
+            // 
+            // test
+            // 
+            this.test.Image = global::_3tr.Properties.Resources.icons8_admin_settings_male_96;
+            this.test.Name = "test";
+            this.test.Size = new System.Drawing.Size(153, 26);
+            this.test.Text = "Edat User";
+            this.test.Click += new System.EventHandler(this.test_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Image = global::_3tr.Properties.Resources.icons8_remove_user_96;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(153, 26);
+            this.toolStripMenuItem2.Text = "Delate User";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Image = global::_3tr.Properties.Resources.icons8_show_password_96;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(153, 26);
+            this.toolStripMenuItem3.Text = "Change Pass";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Image = global::_3tr.Properties.Resources.icons8_email_481;
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(153, 26);
+            this.toolStripMenuItem4.Text = "Send Email";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // phoneCallToolStripMenuItem
+            // 
+            this.phoneCallToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_phone_481;
+            this.phoneCallToolStripMenuItem.Name = "phoneCallToolStripMenuItem";
+            this.phoneCallToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.phoneCallToolStripMenuItem.Text = "Phone Call";
+            this.phoneCallToolStripMenuItem.Click += new System.EventHandler(this.phoneCallToolStripMenuItem_Click);
             // 
             // label3
             // 
@@ -139,54 +188,6 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // addNewUserToolStripMenuItem
-            // 
-            this.addNewUserToolStripMenuItem.Image = global::_3tr.Properties.Resources.add_user;
-            this.addNewUserToolStripMenuItem.Name = "addNewUserToolStripMenuItem";
-            this.addNewUserToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.addNewUserToolStripMenuItem.Text = "Add New User";
-            this.addNewUserToolStripMenuItem.Click += new System.EventHandler(this.addNewUserToolStripMenuItem_Click);
-            // 
-            // test
-            // 
-            this.test.Image = global::_3tr.Properties.Resources.icons8_admin_settings_male_96;
-            this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(180, 22);
-            this.test.Text = "Edat User";
-            this.test.Click += new System.EventHandler(this.test_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Image = global::_3tr.Properties.Resources.icons8_remove_user_96;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem2.Text = "Delate User";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Image = global::_3tr.Properties.Resources.icons8_show_password_96;
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem3.Text = "Change Pass";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Image = global::_3tr.Properties.Resources.icons8_email_481;
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(149, 22);
-            this.toolStripMenuItem4.Text = "Send Email";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
-            // 
-            // phoneCallToolStripMenuItem
-            // 
-            this.phoneCallToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_phone_481;
-            this.phoneCallToolStripMenuItem.Name = "phoneCallToolStripMenuItem";
-            this.phoneCallToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.phoneCallToolStripMenuItem.Text = "Phone Call";
-            this.phoneCallToolStripMenuItem.Click += new System.EventHandler(this.phoneCallToolStripMenuItem_Click);
-            // 
             // Frmusers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -203,6 +204,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Frmusers";
             this.Text = "Frmusers";
+            this.Load += new System.EventHandler(this.Frmusers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -31,7 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.test2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.sendEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.honeCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -39,11 +44,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.test2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sendEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.honeCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -81,10 +81,55 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(195, 280);
             // 
+            // test2ToolStripMenuItem
+            // 
+            this.test2ToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_add_48;
+            this.test2ToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.test2ToolStripMenuItem.Name = "test2ToolStripMenuItem";
+            this.test2ToolStripMenuItem.Size = new System.Drawing.Size(194, 54);
+            this.test2ToolStripMenuItem.Text = "Add New Person";
+            this.test2ToolStripMenuItem.Click += new System.EventHandler(this.test2ToolStripMenuItem_Click);
+            // 
+            // deletPersonToolStripMenuItem
+            // 
+            this.deletPersonToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_denied_48;
+            this.deletPersonToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.deletPersonToolStripMenuItem.Name = "deletPersonToolStripMenuItem";
+            this.deletPersonToolStripMenuItem.Size = new System.Drawing.Size(194, 54);
+            this.deletPersonToolStripMenuItem.Text = "Delet Person";
+            this.deletPersonToolStripMenuItem.Click += new System.EventHandler(this.deletPersonToolStripMenuItem_Click);
+            // 
+            // editeToolStripMenuItem
+            // 
+            this.editeToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_edit_48;
+            this.editeToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.editeToolStripMenuItem.Name = "editeToolStripMenuItem";
+            this.editeToolStripMenuItem.Size = new System.Drawing.Size(194, 54);
+            this.editeToolStripMenuItem.Text = "Edit";
+            this.editeToolStripMenuItem.Click += new System.EventHandler(this.editeToolStripMenuItem_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(209, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(191, 6);
+            // 
+            // sendEmailToolStripMenuItem
+            // 
+            this.sendEmailToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_email_48;
+            this.sendEmailToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.sendEmailToolStripMenuItem.Name = "sendEmailToolStripMenuItem";
+            this.sendEmailToolStripMenuItem.Size = new System.Drawing.Size(194, 54);
+            this.sendEmailToolStripMenuItem.Text = "Send Email";
+            this.sendEmailToolStripMenuItem.Click += new System.EventHandler(this.sendEmailToolStripMenuItem_Click);
+            // 
+            // honeCallToolStripMenuItem
+            // 
+            this.honeCallToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_phone_481;
+            this.honeCallToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.honeCallToolStripMenuItem.Name = "honeCallToolStripMenuItem";
+            this.honeCallToolStripMenuItem.Size = new System.Drawing.Size(194, 54);
+            this.honeCallToolStripMenuItem.Text = "Phone Call";
+            this.honeCallToolStripMenuItem.Click += new System.EventHandler(this.honeCallToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -164,51 +209,6 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // test2ToolStripMenuItem
-            // 
-            this.test2ToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_add_48;
-            this.test2ToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.test2ToolStripMenuItem.Name = "test2ToolStripMenuItem";
-            this.test2ToolStripMenuItem.Size = new System.Drawing.Size(212, 54);
-            this.test2ToolStripMenuItem.Text = "Add New Person";
-            this.test2ToolStripMenuItem.Click += new System.EventHandler(this.test2ToolStripMenuItem_Click);
-            // 
-            // editeToolStripMenuItem
-            // 
-            this.editeToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_edit_48;
-            this.editeToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.editeToolStripMenuItem.Name = "editeToolStripMenuItem";
-            this.editeToolStripMenuItem.Size = new System.Drawing.Size(212, 54);
-            this.editeToolStripMenuItem.Text = "Edit";
-            this.editeToolStripMenuItem.Click += new System.EventHandler(this.editeToolStripMenuItem_Click);
-            // 
-            // sendEmailToolStripMenuItem
-            // 
-            this.sendEmailToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_email_48;
-            this.sendEmailToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.sendEmailToolStripMenuItem.Name = "sendEmailToolStripMenuItem";
-            this.sendEmailToolStripMenuItem.Size = new System.Drawing.Size(212, 54);
-            this.sendEmailToolStripMenuItem.Text = "Send Email";
-            this.sendEmailToolStripMenuItem.Click += new System.EventHandler(this.sendEmailToolStripMenuItem_Click);
-            // 
-            // honeCallToolStripMenuItem
-            // 
-            this.honeCallToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_phone_481;
-            this.honeCallToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.honeCallToolStripMenuItem.Name = "honeCallToolStripMenuItem";
-            this.honeCallToolStripMenuItem.Size = new System.Drawing.Size(212, 54);
-            this.honeCallToolStripMenuItem.Text = "Phone Call";
-            this.honeCallToolStripMenuItem.Click += new System.EventHandler(this.honeCallToolStripMenuItem_Click);
-            // 
-            // deletPersonToolStripMenuItem
-            // 
-            this.deletPersonToolStripMenuItem.Image = global::_3tr.Properties.Resources.icons8_denied_48;
-            this.deletPersonToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.deletPersonToolStripMenuItem.Name = "deletPersonToolStripMenuItem";
-            this.deletPersonToolStripMenuItem.Size = new System.Drawing.Size(212, 54);
-            this.deletPersonToolStripMenuItem.Text = "Delet Person";
-            this.deletPersonToolStripMenuItem.Click += new System.EventHandler(this.deletPersonToolStripMenuItem_Click);
             // 
             // frmPeople
             // 

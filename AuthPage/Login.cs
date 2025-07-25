@@ -16,6 +16,7 @@ namespace _3tr
             // إعداد كلمة المرور لإخفائها بشكل افتراضي
 
             textBoxPassword.UseSystemPasswordChar = true;
+            LoadCredentials();
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -27,6 +28,18 @@ namespace _3tr
         {
             string userName = textBoxUserName.Text.Trim();
             string password = textBoxPassword.Text;
+            SaveCredentials(textBoxUserName.Text, textBoxPassword.Text); // حفظ بيانات الاعتماد الافتراضية
+            // التحقق من صحة اسم المستخدم وكلمة المرور
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please enter both username and password.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            // load and write in the login the user and password if the user check the remember me checkbox
+           
+
+
+
 
             var user = clsUsers.GetUsersByUserName(userName)
                                .FirstOrDefault(u => u.UserPassword == password);
@@ -48,10 +61,13 @@ namespace _3tr
                     MessageBox.Show("Voice file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                MainApp mainApp = new MainApp();
+                MainApp mainApp = new MainApp( userName , password );
+                 
                 mainApp.Show();
 
                 this.FindForm().Hide();
+                // if MainApp close close all application and the frmLogin
+                mainApp.FormClosed += (s, args) => Application.Exit();
 
 
 
@@ -87,6 +103,32 @@ namespace _3tr
 
         }
 
+        // save the user name and password in file if the user check the remember me checkbox
+        void SaveCredentials(string userName, string password)
+        {
+            string filePath = "E:\\repos\\19 Project course\\3tr\\app materya\\credentials.txt";
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                writer.WriteLine(userName);
+                writer.WriteLine(password);
+            }
+
+        }
+        // load the user name and password from file if the user check the remember me checkbox
+        void LoadCredentials()
+        {
+            string filePath = "E:\\repos\\19 Project course\\3tr\\app materya\\credentials.txt";
+            if (File.Exists(filePath))
+            {
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    textBoxUserName.Text = reader.ReadLine();
+                    textBoxPassword.Text = reader.ReadLine();
+                }
+            }
+        }
+
+
         private void labelRemember_Click(object sender, EventArgs e)
         {
 
@@ -94,14 +136,7 @@ namespace _3tr
 
         private void checkBoxRemember_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxRemember.Checked)
-            {
-                //code will be here from file not database 
-            }
-            else
-            {
-                //code will be here
-            }
+            
         }
     }
 }

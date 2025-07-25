@@ -47,6 +47,9 @@
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.linkLabelSetImage = new System.Windows.Forms.LinkLabel();
+            this.textBoxDateOfBirth = new System.Windows.Forms.MaskedTextBox();
+            this.textBoxNationality = new System.Windows.Forms.TextBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -58,9 +61,6 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSave = new System.Windows.Forms.PictureBox();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.linkLabelSetImage = new System.Windows.Forms.LinkLabel();
-            this.textBoxDateOfBirth = new System.Windows.Forms.MaskedTextBox();
-            this.textBoxNationality = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -234,6 +234,33 @@
             this.label3.TabIndex = 30;
             this.label3.Text = "Nationality";
             // 
+            // linkLabelSetImage
+            // 
+            this.linkLabelSetImage.AutoSize = true;
+            this.linkLabelSetImage.Location = new System.Drawing.Point(645, 211);
+            this.linkLabelSetImage.Name = "linkLabelSetImage";
+            this.linkLabelSetImage.Size = new System.Drawing.Size(73, 16);
+            this.linkLabelSetImage.TabIndex = 42;
+            this.linkLabelSetImage.TabStop = true;
+            this.linkLabelSetImage.Text = "Set Image";
+            this.linkLabelSetImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSetImage_LinkClicked);
+            // 
+            // textBoxDateOfBirth
+            // 
+            this.textBoxDateOfBirth.Location = new System.Drawing.Point(149, 154);
+            this.textBoxDateOfBirth.Mask = "0000-00-00";
+            this.textBoxDateOfBirth.Name = "textBoxDateOfBirth";
+            this.textBoxDateOfBirth.Size = new System.Drawing.Size(127, 23);
+            this.textBoxDateOfBirth.TabIndex = 43;
+            // 
+            // textBoxNationality
+            // 
+            this.textBoxNationality.Location = new System.Drawing.Point(149, 204);
+            this.textBoxNationality.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxNationality.Name = "textBoxNationality";
+            this.textBoxNationality.Size = new System.Drawing.Size(132, 23);
+            this.textBoxNationality.TabIndex = 44;
+            // 
             // pictureBox9
             // 
             this.pictureBox9.Image = global::_3tr.Properties.Resources.icons8_address_48;
@@ -357,33 +384,6 @@
             this.pictureBoxClose.TabIndex = 0;
             this.pictureBoxClose.TabStop = false;
             this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
-            // 
-            // linkLabelSetImage
-            // 
-            this.linkLabelSetImage.AutoSize = true;
-            this.linkLabelSetImage.Location = new System.Drawing.Point(645, 211);
-            this.linkLabelSetImage.Name = "linkLabelSetImage";
-            this.linkLabelSetImage.Size = new System.Drawing.Size(73, 16);
-            this.linkLabelSetImage.TabIndex = 42;
-            this.linkLabelSetImage.TabStop = true;
-            this.linkLabelSetImage.Text = "Set Image";
-            this.linkLabelSetImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSetImage_LinkClicked);
-            // 
-            // textBoxDateOfBirth
-            // 
-            this.textBoxDateOfBirth.Location = new System.Drawing.Point(149, 154);
-            this.textBoxDateOfBirth.Mask = "0000-00-00";
-            this.textBoxDateOfBirth.Name = "textBoxDateOfBirth";
-            this.textBoxDateOfBirth.Size = new System.Drawing.Size(127, 23);
-            this.textBoxDateOfBirth.TabIndex = 43;
-            // 
-            // textBoxNationality
-            // 
-            this.textBoxNationality.Location = new System.Drawing.Point(149, 204);
-            this.textBoxNationality.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxNationality.Name = "textBoxNationality";
-            this.textBoxNationality.Size = new System.Drawing.Size(132, 23);
-            this.textBoxNationality.TabIndex = 44;
             // 
             // frmAddPerson
             // 

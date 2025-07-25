@@ -25,8 +25,12 @@ namespace _3tr
         {
             // add all users to data 
             dataGridView1.DataSource = clsUsers.GetAllUsers();
-            
-            //this.Size = new Size(800, 700); // Set the size of the form
+            CountOfDatatable(); // Count the number of rows in the DataGridView and display it
+
+            this.Size = new Size(800, 700); // Set the size of the form
+            // size is fixed
+            this.MinimumSize = new Size(800, 700); // Set the minimum size of the form
+            this.MaximumSize = new Size(800, 700); // Set the maximum size of the form
 
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -151,6 +155,18 @@ namespace _3tr
             _RefreshContactsList(); // Refresh the list after updating a user
 
 
+        }
+        void CountOfDatatable()
+        {
+            int count = dataGridView1.Rows.Count;
+            CountOfDatatable countOfDatatable = new CountOfDatatable(count);
+            countOfDatatable.Dock = DockStyle.Bottom;
+            this.Controls.Add(countOfDatatable);
+        }
+
+        private void Frmusers_Load(object sender, EventArgs e)
+        {
+           
         }
     }
 }

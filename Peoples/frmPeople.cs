@@ -37,6 +37,11 @@ namespace _3tr
             comboBox1.SelectedIndex = 0; // اختيار افتراضي
             textBox1.Text = string.Empty; // Clear the filter text box
             LoadAllPersons();
+            CountOfDatatable(); // Count the number of rows in the DataGridView and display it
+            this.Size = new Size(1200, 700); // Set the size of the form
+            // size is fixed
+            this.MinimumSize = new Size(1200, 700); // Set the minimum size of the form
+            this.MaximumSize = new Size(1200, 700); // Set the maximum size of the form
         }
 
         private void LoadAllPersons()
@@ -56,6 +61,15 @@ namespace _3tr
             }
         }
 
+        void CountOfDatatable()
+        {
+            int count = dataGridView1.Rows.Count;
+            CountOfDatatable countOfDatatable = new CountOfDatatable(count);
+            countOfDatatable.Dock = DockStyle.Bottom;
+            this.Controls.Add(countOfDatatable);
+
+
+        }
         private void buttonFilter_Click()
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text))
