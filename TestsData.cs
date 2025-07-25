@@ -9,15 +9,13 @@ namespace ContactsDataAccessLayer
         public int TestId { get; set; }
         public int ApplicationId { get; set; }
         public int TestTypeId { get; set; }
-        public string PaymentStatus { get; set; }
         public DateTime TestDate { get; set; }
         public int Score { get; set; }
         public string TestResult { get; set; }
-        public short RetryCount { get; set; }
-        public short QuestionCount { get; set; }
-        public short Fees { get; set; }
+        public int? RetryCount { get; set; }
+        public int QuestionCount { get; set; }
         public string Description { get; set; }
-        public int PersonId { get; set; }
+        public int? PersonId { get; set; } // تغيير إلى nullable
     }
     public class clsTestsData
     {
@@ -76,7 +74,7 @@ namespace ContactsDataAccessLayer
 
         public static List<clsTest> GetTestsByApplicationId(int applicationId)
         {
-            return GetTestsByCondition("ApplicationId", applicationId);
+            return GetTestsByCondition("ApplicationID", applicationId);
         }
 
         public static List<clsTest> GetTestsByTestTypeId(int testTypeId)
@@ -114,14 +112,29 @@ namespace ContactsDataAccessLayer
         {
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                string query = @"INSERT INTO Tests (TestId, ApplicationId, TestTypeId, PaymentStatus, TestDate, Score, TestResult, RetryCount, QuestionCount, Fees, Description, PersonId) 
-                                 VALUES (@TestId, @ApplicationId, @TestTypeId, @PaymentStatus, @TestDate, @Score, @TestResult, @RetryCount, @QuestionCount, @Fees, @Description, @PersonId)";
+                string query = @"INSERT INTO Tests (ApplicationId, TestTypeId, TestDate, Score, Result, RetryCount, QuestionCount, Description, PersonId) 
+                         VALUES (@ApplicationId, @TestTypeId, @TestDate, @Score, @Result, @RetryCount, @QuestionCount, @Description, @PersonId)";
                 SqlCommand command = new SqlCommand(query, connection);
-                AddTestParameters(command, test);
+
+                // تسجيل القيمة المرسلة لتتبع المشكلة
+
+                // إضافة المعاملات
+                command.Parameters.AddWithValue("@ApplicationId", test.ApplicationId);
+                command.Parameters.AddWithValue("@TestTypeId", test.TestTypeId);
+                command.Parameters.AddWithValue("@TestDate", test.TestDate);
+                command.Parameters.AddWithValue("@Score", (object)test.Score ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Result", (object)test.TestResult ?? DBNull.Value);
+                command.Parameters.AddWithValue("@RetryCount", (object)test.RetryCount ?? DBNull.Value);
+                command.Parameters.AddWithValue("@QuestionCount", test.QuestionCount);
+                command.Parameters.AddWithValue("@Description", (object)test.Description ?? DBNull.Value);
+                command.Parameters.AddWithValue("@PersonId", (object)test.PersonId ?? DBNull.Value); // تعيين NULL إذا كان null
+
                 try
                 {
                     connection.Open();
-                    return command.ExecuteNonQuery() > 0;
+                    int rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine($"Insert successful, rows affected: {rowsAffected}");
+                    return rowsAffected > 0;
                 }
                 catch (Exception ex)
                 {
@@ -131,6 +144,45 @@ namespace ContactsDataAccessLayer
             }
         }
 
+        // validate the test before make new Issue 
+        public static bool ValidateTestBeforeIssue(clsTest test)
+        {
+            bool isValid = false;
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+            SELECT COUNT(*) 
+            FROM Tests
+            WHERE ApplicationID = @ApplicationId
+            AND Result = 'Pass'
+            AND TestTypeID IN (1, 2, 3)
+            AND EXISTS (
+                SELECT 1
+                FROM Tests t2
+                WHERE t2.ApplicationID = Tests.ApplicationID
+                AND t2.Result = 'Pass'
+                AND t2.TestTypeID IN (1, 2, 3)
+                GROUP BY t2.ApplicationID
+                HAVING COUNT(DISTINCT t2.TestTypeID) = 3
+            )";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ApplicationId", test.ApplicationId);
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        isValid = Convert.ToInt32(result) > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error validating test for ApplicationId {test.ApplicationId}: {ex.Message}");
+                }
+            }
+            return isValid;
+        }
         public static bool UpdateTest(clsTest test)
         {
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
@@ -177,33 +229,29 @@ namespace ContactsDataAccessLayer
         {
             return new clsTest
             {
-                TestId = reader.GetInt32(0),
-                ApplicationId = reader.GetInt32(1),
-                TestTypeId = reader.GetInt32(2),
-                PaymentStatus = reader.GetString(3),
-                TestDate = reader.GetDateTime(4),
-                Score = reader.GetInt32(5),
-                TestResult = reader.GetString(6),
-                RetryCount = reader.GetInt16(7),
-                QuestionCount = reader.GetInt16(8),
-                Fees = reader.GetInt16(9),
-                Description = reader.GetString(10),
-                PersonId = reader.GetInt32(11)
+                TestId = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
+                ApplicationId = reader.IsDBNull(1) ? 0 : reader.GetInt32(1),
+                TestTypeId = reader.IsDBNull(2) ? 0 : reader.GetInt32(2),
+                TestDate = reader.IsDBNull(3) ? DateTime.MinValue : reader.GetDateTime(3),
+                Score = reader.IsDBNull(4) ? 0 : reader.GetInt32(4),
+                TestResult = reader.IsDBNull(5) ? null : reader.GetString(5),
+                RetryCount = reader.IsDBNull(6) ? 0 : reader.GetInt32(6), // استخدام GetInt32 بدلاً من GetInt16
+                QuestionCount = reader.IsDBNull(7) ? 0 : reader.GetInt32(7), // استخدام GetInt32 بدلاً من GetInt16
+                Description = reader.IsDBNull(8) ? null : reader.GetString(8),
+                PersonId = reader.IsDBNull(9) ? 0 : reader.GetInt32(9)
             };
         }
 
         private static void AddTestParameters(SqlCommand command, clsTest test)
         {
             command.Parameters.AddWithValue("@TestId", test.TestId);
-            command.Parameters.AddWithValue("@ApplicationId", test.ApplicationId);
+            command.Parameters.AddWithValue("@ApplicationID", test.ApplicationId);
             command.Parameters.AddWithValue("@TestTypeId", test.TestTypeId);
-            command.Parameters.AddWithValue("@PaymentStatus", test.PaymentStatus);
             command.Parameters.AddWithValue("@TestDate", test.TestDate);
             command.Parameters.AddWithValue("@Score", test.Score);
             command.Parameters.AddWithValue("@TestResult", test.TestResult);
             command.Parameters.AddWithValue("@RetryCount", test.RetryCount);
             command.Parameters.AddWithValue("@QuestionCount", test.QuestionCount);
-            command.Parameters.AddWithValue("@Fees", test.Fees);
             command.Parameters.AddWithValue("@Description", test.Description);
             command.Parameters.AddWithValue("@PersonId", test.PersonId);
         }

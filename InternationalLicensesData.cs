@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 
 namespace ContactsDataAccessLayer
@@ -15,6 +16,31 @@ namespace ContactsDataAccessLayer
             public string Status { get; set; }
             public int PreviousInternationalLicenseID { get; set; }
         }
+
+        // Check if an international license is available by License ID
+        public static bool IsInternationalLicenseAvailableByLicenseID(int licenseID)
+        {
+            bool isAvailable = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM InternationalLicenses WHERE LicenseID = @LicenseID", connection);
+            command.Parameters.AddWithValue("@LicenseID", licenseID);
+            try
+            {
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+                isAvailable = count > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isAvailable;
+        }
+
 
         public static bool IsInternationalLicenseAvailableByID(int id)
         {
@@ -78,13 +104,13 @@ namespace ContactsDataAccessLayer
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             SqlCommand command = new SqlCommand(
-                "INSERT INTO InternationalLicenses (LicenseType, IssuedDate, ExpiryDate, Status, PreviousInternaTionLicenseID) " +
-                "VALUES (@LicenseType, @IssuedDate, @ExpiryDate, @Status, @PreviousInternaTionLicenseID)", connection);
-            command.Parameters.AddWithValue("@LicenseType", license.LicenseID);
-            command.Parameters.AddWithValue("@IssuedDate", license.IssueDate);
+                "INSERT INTO InternationalLicenses (LicenseID,IssueDate, ExpiryDate, Status, PreviousInternationalLicenseID) " +
+                "VALUES ( @LicenseID,@IssueDate, @ExpiryDate, @Status, @PreviousInternationalLicenseID)", connection);
+            command.Parameters.AddWithValue("@IssueDate", license.IssueDate);
             command.Parameters.AddWithValue("@ExpiryDate", license.ExpiryDate);
+            command.Parameters.AddWithValue("@LicenseID", license.LicenseID);
             command.Parameters.AddWithValue("@Status", license.Status);
-            command.Parameters.AddWithValue("@PreviousInternaTionLicenseID", license.PreviousInternationalLicenseID);
+            command.Parameters.AddWithValue("@PreviousInternationalLicenseID", license.PreviousInternationalLicenseID);
             try
             {
                 connection.Open();

@@ -47,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationData.cs" />
+    <Compile Include="ApplicationTypeData.cs" />
     <Compile Include="AppointmentData.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
+    <Compile Include="DriversData.cs" />
     <Compile Include="InternationalLicensesData.cs" />
     <Compile Include="LicenseClassData.cs" />
     <Compile Include="LicensesData.cs" />
